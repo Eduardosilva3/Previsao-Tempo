@@ -1,21 +1,33 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View , TouchableOpacity, Image} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useState } from 'react';
+import imagens from './Imagens';
 
 
 
-export default function PrevisaoToday() {
+
+
+export default function PrevisaoToday({dados}) {
+  
+  
+ 
+
+  
+
+
+
   return (
     <View style={styles.container}>
         <Image
-        source={require('../assets/nublado.png')}
+        source={imagens[dados.condition_slug]}
         style={{ width: 100, height: 100 }}
       />
-      <Text style={styles.textTemp}>31°</Text>
+      <Text style={styles.textTemp}>{dados.temp}°</Text>
       <Text style={styles.text}>Precipitação</Text>
       <View style={{display: 'flex', flexDirection: 'row'}}>
-        <Text style={styles.text}>Max.: 31°</Text>
-        <Text style={styles.text}>Min.: 22°</Text>
+        <Text style={styles.text}>Max.: {dados.forecast[0].max}°</Text>
+        <Text style={styles.text}>Min.: {dados.forecast[0].min}°</Text>
       </View>
     </View>
   );
@@ -24,7 +36,6 @@ export default function PrevisaoToday() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#2b4ab3',
     alignItems: 'center',
     justifyContent: 'center',
   },
